@@ -3,12 +3,18 @@ package com.example.lib;
 import java.util.ArrayList;
 
 public class Player {
+     private String name = " you must cast";
+     private Location location;
      private ArrayList<Card> cards = new ArrayList<>(0);
      public void addCard(final Card card) {
           cards.add(card);
      }
 
-     public Card getCard(int i) {
+    public String getName() {
+        return name;
+    }
+
+    public Card getCard(int i) {
           return cards.get(i);
      }
 
@@ -23,7 +29,20 @@ public class Player {
          }
          return urls;
      }
-     public int getCardLength() {
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public int getCardLength() {
           return cards.size();
      }
 }
