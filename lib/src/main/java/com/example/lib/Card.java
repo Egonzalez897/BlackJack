@@ -39,6 +39,7 @@ public class Card {
         values.put("K", 10);
     }
 
+
     public Card(String url, int value) {
         this.url = url;
         this.value = value;

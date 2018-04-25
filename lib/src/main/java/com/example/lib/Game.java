@@ -7,7 +7,6 @@ public class Game {
     private ArrayList<Player> players;
     private Player currentPlayer;
     private Deck deck;
-    private Player previousPlayer;
 
     public Game(final ArrayList<Player> players, final Deck deck) {
         this.players = players;
@@ -41,6 +40,24 @@ public class Game {
 
     public void start() {
         currentPlayer = players.get(1);
+    }
+
+    public void nextPlayer() {
+        int pos = findCurrent();
+        if (pos == players.size() - 1) {
+            currentPlayer = players.get(0);
+        } else {
+            currentPlayer = players.get(pos + 1);
+        }
+    }
+
+    public int findCurrent() {
+        for (int i = 0; i < players.size(); i++) {
+            if (currentPlayer.equals(players.get(i))) {
+                return i;
+            }
+        }
+        return 0;
     }
 
 
