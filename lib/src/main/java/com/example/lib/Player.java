@@ -10,19 +10,15 @@ public class Player {
      public void addCard(final Card card) {
           cards.add(card);
      }
-
-    public String getName() {
+     public String getName() {
         return name;
     }
-
-    public Card getCard(int i) {
+     public Card getCard(int i) {
           return cards.get(i);
      }
-
      public ArrayList<Card> getCards() {
           return cards;
      }
-
      public String[] getUrls() {
          String[] urls = new String[cards.size()];
          for (int i = 0; i < cards.size(); i++) {
@@ -71,7 +67,7 @@ public class Player {
          String sum = "[";
          ArrayList<Integer> sums = getSums();
          sum += sums.get(0).toString();
-         if (sums.get(0) != sums.get(1)) {
+         if ((int) sums.get(0) != (int) sums.get(1)) {
              sum += ", ";
              sum += sums.get(1).toString();
          }

@@ -1,5 +1,7 @@
 package com.example.lib;
 
+import java.util.ArrayList;
+
 public class Dealer extends Player {
     private String name = "The Dealer";
 
@@ -8,10 +10,10 @@ public class Dealer extends Player {
     }
 
     public boolean shouldDraw() {
-        if (getSums().get(1) >= 17) {
+        ArrayList<Integer> sums = getSums();
+        if ((sums.get(1) >= 17 && sums.get(1) <=21)|| sums.get(0) >= 17) {
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 }

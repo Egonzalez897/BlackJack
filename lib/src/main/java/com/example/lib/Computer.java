@@ -15,7 +15,7 @@ public class Computer extends Player {
         if (sum.get(0) == 21 || sum.get(1) == 21) {
             return false;
         }
-        if (21 - sum.get(1) >= 3) {
+        if (sum.get(1) >= 20 && sum.get(1) <= 21) {
             return false;
         }
         if (sum.get(0) > 21) {
@@ -45,9 +45,6 @@ public class Computer extends Player {
         double probability = numCardsUnderValue * modifier / deck.getCardsRemaining();
         Random random = new Random();
         double randomNumber = random.nextDouble();
-        if (randomNumber <= probability) {
-            return true;
-        }
-        return false;
+        return randomNumber <= probability;
     }
 }
