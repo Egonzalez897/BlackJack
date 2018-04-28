@@ -24,6 +24,7 @@ public class HomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
+
         difficultySwitch = findViewById(R.id.difficultySwitch);
         cardSwitch = findViewById(R.id.cardSwitch);
         name = findViewById(R.id.editText);
@@ -34,6 +35,8 @@ public class HomeScreen extends AppCompatActivity {
                 Intent i = new Intent(HomeScreen.this, MainActivity.class);
                 i.putExtra("cpu", 1);
                 i.putExtra("name", String.valueOf(name.getText()));
+                i.putExtra("difficulty", difficultySwitch.isChecked());
+                i.putExtra("showCards", cardSwitch.isChecked());
                 startActivity(i);
             }
         });
@@ -45,6 +48,8 @@ public class HomeScreen extends AppCompatActivity {
                 Intent i = new Intent(HomeScreen.this, MainActivity.class);
                 i.putExtra("cpu", 2);
                 i.putExtra("name", String.valueOf(name.getText()));
+                i.putExtra("difficulty", difficultySwitch.isChecked());
+                i.putExtra("showCards", cardSwitch.isChecked());
                 startActivity(i);
             }
         });
@@ -54,9 +59,10 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomeScreen.this, MainActivity.class);
-
                 i.putExtra("cpu", 3);
                 i.putExtra("name", String.valueOf(name.getText()));
+                i.putExtra("difficulty", difficultySwitch.isChecked());
+                i.putExtra("showCards", cardSwitch.isChecked());
                 startActivity(i);
             }
         });
@@ -76,9 +82,9 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (cardSwitch.isChecked()) {
-                    cardSwitch.setText("Don't Show Cards");
-                } else {
                     cardSwitch.setText("Show Cards");
+                } else {
+                    cardSwitch.setText("Don't Show Cards");
                 }
             }
         });

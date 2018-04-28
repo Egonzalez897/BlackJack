@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
     TextView winview;
     Button draw;
     Button standBtn;
-
+    boolean difficult = false;
+    boolean showCards = false;
+    final String BACK_OF_CARD_URL = "https://i.pinimg.com/236x/36/c0/58/36c058d97b7ddbbc6b8510cdd43352dd.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         playername = findViewById(R.id.playerTxt);
         playername.setText(extras.getString("name"));
         numcpus = extras.getInt("cpu");
+        difficult = extras.getBoolean("difficulty");
+        showCards = extras.getBoolean("showCards");
 
         draw = findViewById(R.id.drawBtn);
         standBtn = findViewById(R.id.standBtn);
@@ -108,18 +112,22 @@ public class MainActivity extends AppCompatActivity {
         top1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Main2Activity.class);
-                i.putExtra("Cards", top.getUrls());
-                startActivity(i);
+                if (showCards || gameEnded()) {
+                    Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                    i.putExtra("Cards", top.getUrls());
+                    startActivity(i);
+                }
             }
         });
 
         top2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Main2Activity.class);
-                i.putExtra("Cards", top.getUrls());
-                startActivity(i);
+                if (showCards || gameEnded()) {
+                    Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                    i.putExtra("Cards", top.getUrls());
+                    startActivity(i);
+                }
             }
         });
 
@@ -127,10 +135,12 @@ public class MainActivity extends AppCompatActivity {
         left1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (left != null) {
-                    Intent i = new Intent(MainActivity.this, Main2Activity.class);
-                    i.putExtra("Cards", left.getUrls());
-                    startActivity(i);
+                if (showCards || gameEnded()) {
+                    if (left != null) {
+                        Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                        i.putExtra("Cards", left.getUrls());
+                        startActivity(i);
+                    }
                 }
             }
         });
@@ -139,10 +149,12 @@ public class MainActivity extends AppCompatActivity {
         left2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (left != null) {
-                    Intent i = new Intent(MainActivity.this, Main2Activity.class);
-                    i.putExtra("Cards", left.getUrls());
-                    startActivity(i);
+                if (showCards || gameEnded()) {
+                    if (left != null) {
+                        Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                        i.putExtra("Cards", left.getUrls());
+                        startActivity(i);
+                    }
                 }
             }
         });
@@ -152,10 +164,12 @@ public class MainActivity extends AppCompatActivity {
         right1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (right != null) {
-                    Intent i = new Intent(MainActivity.this, Main2Activity.class);
-                    i.putExtra("Cards", right.getUrls());
-                    startActivity(i);
+                if (showCards || gameEnded()) {
+                    if (right != null) {
+                        Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                        i.putExtra("Cards", right.getUrls());
+                        startActivity(i);
+                    }
                 }
             }
         });
@@ -164,10 +178,12 @@ public class MainActivity extends AppCompatActivity {
         right2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (right != null) {
-                    Intent i = new Intent(MainActivity.this, Main2Activity.class);
-                    i.putExtra("Cards", right.getUrls());
-                    startActivity(i);
+                if (showCards || gameEnded()) {
+                    if (right != null) {
+                        Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                        i.putExtra("Cards", right.getUrls());
+                        startActivity(i);
+                    }
                 }
             }
         });
@@ -377,17 +393,27 @@ public class MainActivity extends AppCompatActivity {
             case TOP:
                 top1 = findViewById(R.id.topCard1);
                 top2 = findViewById(R.id.topCard2);
-                loadFromUrl(player.getCard(player.getCardLength() - 1).getUrl(), top1, player.getLocation());
-                if (player.getCardLength() >= 2) {
-                    loadFromUrl(player.getCard(player.getCardLength() - 2).getUrl(), top2, player.getLocation());
+                if (showCards) {
+                    loadFromUrl(player.getCard(player.getCardLength() - 1).getUrl(), top1, player.getLocation());
+                    if (player.getCardLength() >= 2) {
+                        loadFromUrl(player.getCard(player.getCardLength() - 2).getUrl(), top2, player.getLocation());
+                    }
+                } else {
+                    loadFromUrl(BACK_OF_CARD_URL, top1, player.getLocation());
+                    loadFromUrl(BACK_OF_CARD_URL, top2, player.getLocation());
                 }
                 break;
             case LEFT:
                 left1 = findViewById(R.id.leftCard1);
                 left2 = findViewById(R.id.leftCard2);
-                loadFromUrl(player.getCard(player.getCardLength() - 1).getUrl(), left1, player.getLocation());
-                if (player.getCardLength() >= 2) {
-                    loadFromUrl(player.getCard(player.getCardLength() - 2).getUrl(), left2, player.getLocation());
+                if (showCards) {
+                    loadFromUrl(player.getCard(player.getCardLength() - 1).getUrl(), left1, player.getLocation());
+                    if (player.getCardLength() >= 2) {
+                        loadFromUrl(player.getCard(player.getCardLength() - 2).getUrl(), left2, player.getLocation());
+                    }
+                } else {
+                    loadFromUrl(BACK_OF_CARD_URL, left1, player.getLocation());
+                    loadFromUrl(BACK_OF_CARD_URL, left2, player.getLocation());
                 }
                 break;
             case BOTTOM:
@@ -399,13 +425,19 @@ public class MainActivity extends AppCompatActivity {
                 if (player.getCardLength() >= 2) {
                     loadFromUrl(player.getCard(player.getCardLength() - 2).getUrl(), cardPlayer2, player.getLocation());
                 }
+
                 break;
             case RIGHT:
                 right1 = findViewById(R.id.rightCard1);
                 right2 = findViewById(R.id.rightCard2);
-                loadFromUrl(player.getCard(player.getCardLength() - 1).getUrl(), right1, player.getLocation());
-                if (player.getCardLength() >= 2) {
-                    loadFromUrl(player.getCard(player.getCardLength() - 2).getUrl(), right2, player.getLocation());
+                if (showCards) {
+                    loadFromUrl(player.getCard(player.getCardLength() - 1).getUrl(), right1, player.getLocation());
+                    if (player.getCardLength() >= 2) {
+                        loadFromUrl(player.getCard(player.getCardLength() - 2).getUrl(), right2, player.getLocation());
+                    }
+                } else {
+                    loadFromUrl(BACK_OF_CARD_URL, right1, player.getLocation());
+                    loadFromUrl(BACK_OF_CARD_URL, right2, player.getLocation());
                 }
                 break;
                 default:
@@ -487,12 +519,18 @@ public class MainActivity extends AppCompatActivity {
                 return players;
 
             case 2:
-                players.add(new Computer());
+                Computer comp1 = new Computer();
+                comp1.setDifficult(difficult);
+                players.add(comp1);
                 return players;
 
             case 3:
-                players.add(new Computer());
-                players.add(new Computer());
+                Computer comp2 = new Computer();
+                Computer comp3 = new Computer();
+                comp2.setDifficult(difficult);
+                comp3.setDifficult(difficult);
+                players.add(comp2);
+                players.add(comp3);
                 return players;
 
                 default:
@@ -668,7 +706,7 @@ public class MainActivity extends AppCompatActivity {
             winview.setVisibility(View.VISIBLE);
         }
     }
-    
+
     /**
      * Checks if the game is over.
      * @return - Returns true if the game is over. False otherwise.
