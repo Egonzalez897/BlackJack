@@ -668,7 +668,7 @@ public class MainActivity extends AppCompatActivity {
             winview.setVisibility(View.VISIBLE);
         }
     }
-
+    
     /**
      * Checks if the game is over.
      * @return - Returns true if the game is over. False otherwise.
