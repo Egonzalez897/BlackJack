@@ -38,6 +38,11 @@ public class Main2Activity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Loads the images of the card at the ImageView.
+     * @param url - the url for the card image.
+     * @param image - the ImageView location in the UI.
+     */
     public void loadFromUrl(final String url, ImageView image) {
         Picasso.with(this).load(url).placeholder(R.mipmap.ic_launcher).into(image, new com.squareup.picasso.Callback(){
             @Override
@@ -52,6 +57,11 @@ public class Main2Activity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Get
+     * @param number - Where in the hand the card is located.
+     * @return - return the position for that card.
+     */
     public ImageView getImageView(int number) {
         switch (number) {
             case 0:

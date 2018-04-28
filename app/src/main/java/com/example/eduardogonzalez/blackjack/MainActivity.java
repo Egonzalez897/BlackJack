@@ -260,21 +260,28 @@ public class MainActivity extends AppCompatActivity {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            //gets card and gives it to player
                             getCard(response, player);
+                            //draws the card
                             drawImage(player);
+                            //checks to see if the dealer is current player.
                             if (player instanceof Dealer) {
+                                // if the game has started and if the dealer should draw
                                 if (gameStarted && player.shouldDraw()) {
                                     player.setCanPlay(false);
                                     drawAPICall(player);
                                 }
+                                //if the Computer is playing.
                             } else if (player instanceof Computer) {
                                 if (gameStarted && ((Computer) player).shouldDraw(game.getDeck())) {
                                     player.setCanPlay(false);
                                     drawAPICall(player);
                                 }
+                                //if the user is playing.
                             } else {
                                 if (gameStarted) {
                                     player.setCanPlay(false);
+                                    //IF the user goes over 21, automatically stands.
                                     if (player.getSums().get(0) > 21) {
                                         draw.setVisibility(View.INVISIBLE);
                                         standBtn.setVisibility(View.INVISIBLE);
@@ -282,6 +289,8 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 }
                             }
+                            //Once current player has drawn as much as possible, they can no longer
+                            //play.
                             if (gameStarted) {
                                 player.setCanPlay(false);
                             }
@@ -358,6 +367,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException ignored) {
         }
     }
+
+    /**
+     * Draws image for the player depending on location.
+     * @param player - the player playing.
+     */
     void drawImage(Player player) {
         switch (player.getLocation()) {
             case TOP:
@@ -398,6 +412,13 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+    /**
+     * loads the image
+     * @param url - the image URl
+     * @param image - the ImageView.
+     * @param location - the location of the image. Image gets rotated based on position.
+     */
     public void loadFromUrl(final String url, ImageView image, Location location) {
 
         switch (location) {
@@ -451,6 +472,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    /**
+     *
+     * @param i - number of computers in the game.
+     * @return - the ArrayList of all the players.
+     */
     public ArrayList<Player> getPlayers(final int i) {
         ArrayList<Player> players = new ArrayList<Player>();
         players.add(new Player());
@@ -473,6 +500,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This rotates who the dealer is, excluding the user.
+     * @param i - Number of players.
+     */
     public void setOrder(int i) {
         game.reorderArray();
         startPlayer = game.getCurrentPlayer();
@@ -529,6 +560,7 @@ public class MainActivity extends AppCompatActivity {
                 drawAPICall(left);
                 drawAPICall(left);
                 break;
+            //checks player position and puts them in the order of the ArrayList.
             case 4:
                 if (game.getPlayers().size() - 1 - findPlayer() == 0) {
                     left = game.getPlayers().get(0);
@@ -595,6 +627,9 @@ public class MainActivity extends AppCompatActivity {
         return 0;
     }
 
+    /**
+     * This calculates who wins and displays the winner(s).
+     */
     public void getWinner() {
         winners = new ArrayList<>();
         int biggestUnder21 = 0;
@@ -634,6 +669,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Checks if the game is over.
+     * @return - Returns true if the game is over. False otherwise.
+     */
     public boolean gameEnded() {
         for (Player player: game.getPlayers()) {
             if (player.canPlay()) {
