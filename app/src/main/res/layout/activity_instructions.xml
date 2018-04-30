@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minWidth="8dp"
+    android:background="@color/green"
     tools:context=".Instructions">
 
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="360dp"
-        android:layout_height="372dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -19,12 +20,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="DO NOT CLICK ANY BUTTONS UNTIL IMAGES HAVE LOADED. \n\nClick hit to get a card. \n\nTry to get the highest score without going over 21. \n\nTap stand once you are satisfied with your hand.\n\nTap reset to start a new game. \n\nTap main menu to surrender. \n\nThe person with the closest score to 21 without going over wins. \n\nAce is worth 1 or 11 and face cards are  worth 10. All other cards are worth pip value."
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="0.645" />
 
     <Button
         android:id="@+id/goHome"
