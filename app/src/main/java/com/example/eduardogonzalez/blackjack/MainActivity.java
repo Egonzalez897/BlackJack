@@ -225,6 +225,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, MainActivity.class);
                 i.putExtra("cpu", numcpus);
                 i.putExtra("name", extras.getString("name"));
+
+                //WE NEED SOMETHING RIGHT HERE TO STOP THE GLITCH
+                /*i.putExtra("difficulty", difficult.isChecked());
+                i.putExtra("showCards", ShowCards.isChecked());*/
                 startActivity(i);
             }
         });
@@ -235,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, HomeScreen.class);
                 startActivity(i);
+
             }
         });
 

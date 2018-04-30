@@ -14,10 +14,22 @@ public class HomeScreen extends AppCompatActivity {
     private Button cpu1;
     private Button cpu2;
     private Button cpu3;
-    private Button instr;
     private TextView name;
     private Switch difficultySwitch;
     private Switch cardSwitch;
+    private Button instruction;
+
+    /*
+    menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, HomeScreen.class);
+                startActivity(i);
+
+            }
+        });
+     */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +98,16 @@ public class HomeScreen extends AppCompatActivity {
                 } else {
                     cardSwitch.setText("Don't Show Cards");
                 }
+            }
+        });
+
+        instruction = findViewById(R.id.instruction);
+        instruction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomeScreen.this, Instructions.class);
+                startActivity(i);
+
             }
         });
     }
