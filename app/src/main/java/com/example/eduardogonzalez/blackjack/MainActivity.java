@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
     TextView winview;
     Button draw;
     Button standBtn;
-    boolean difficult = false;
-    boolean showCards = false;
+    private boolean difficult;
+    private boolean showCards;
     final String BACK_OF_CARD_URL = "https://i.pinimg.com/236x/36/c0/58/36c058d97b7ddbbc6b8510cdd43352dd.jpg";
 
     @Override
@@ -225,6 +225,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, MainActivity.class);
                 i.putExtra("cpu", numcpus);
                 i.putExtra("name", extras.getString("name"));
+                i.putExtra("difficulty", difficult);
+                i.putExtra("showCards", showCards);
 
                 //WE NEED SOMETHING RIGHT HERE TO STOP THE GLITCH
                 /*i.putExtra("difficulty", difficult.isChecked());

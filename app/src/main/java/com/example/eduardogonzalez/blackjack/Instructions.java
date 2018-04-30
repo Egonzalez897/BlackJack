@@ -25,8 +25,7 @@ public class Instructions extends AppCompatActivity {
             }
         });
 
-
-        Bundle extras = getIntent().getExtras();
+        //Bundle extras = getIntent().getExtras();
         // check to make sure it is not null
     }
 }
