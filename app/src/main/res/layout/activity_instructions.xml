@@ -19,7 +19,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="DO NOT CLICK ANY BUTTONS UNTIL IMAGES HAVE LOADED. \n\nClick hit to get a card. \n\nTry to get the highest score without going over 21. \n\nTap stand once you are satisfied with your hand.\n\nTap reset to start a new game. \n\nTap main menu to surrender. \n\nThe person with the closest score to 21 without going over wins. \n\nAce is worth 1 or 11 and face cards are  worth 10. All other cards are worth pip value."
+        android:text="DO NOT CLICK ANY BUTTONS UNTIL IMAGES HAVE LOADED. \n\nClick hit to get a card. \n\nTry to get the highest score without going over 21. \n\nTap stand once you are satisfied with your hand.\n\nTap reset to start a new game. \n\nTap main menu to surrender. \n\nThe person with the closest score to 21 without going over wins.\n\n If all players go over 21 then the dealer wins. \n\nAce is worth 1 or 11 and face cards are  worth 10. All other cards are worth pip value."
         android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
